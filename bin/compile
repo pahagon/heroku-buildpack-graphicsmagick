@@ -9,10 +9,6 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
-echo "a"
-echo $BUILD_DIR
-echo "b"
-
 if [ "$STACK" == "" ]; then
   echo "STACK environment variable must be set indicating which build to use (i.e. STACK=cedar or STACK=cedar-14)"
   exit 1
@@ -106,8 +102,12 @@ cp $VENDORED_GRAPHICSMAGICK/bin/* "$BUILD_DIR/bin/"
 
 cp -R $VENDORED_GRAPHICSMAGICK/* $gm_lib_path
 
+echo "a"
+echo $gm_lib_path
+find $gm_lib_path
+echo "b"
+
 echo "Building runtime environment for graphicsmagick" | arrow
 mkdir -p $BUILD_DIR/.profile.d
-find $BUILD_DIR
 echo "export PATH=\"\$HOME/bin:\$PATH\"" > $BUILD_DIR/.profile.d/graphicsmagick.sh
 echo "export LD_LIBRARY_PATH=\"/app/vendor/nasm/lib/:/app/vendor/libjpeg-turbo/lib/:/app/vendor/zlib/lib/:/app/vendor/libpng/lib/:/app/vendor/graphicsmagick/lib/:\$LD_LIBRARY_PATH\"" >> $BUILD_DIR/.profile.d/graphicsmagick.sh
