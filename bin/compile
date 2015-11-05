@@ -8,7 +8,7 @@ source `dirname $0`/../configs.sh
 BUILD_DIR=$1
 CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
-PREFIX_DIR=$BUILD_DIR
+PREFIX_DIR=/app/vendor/
 
 if [ "$STACK" == "" ]; then
   echo "STACK environment variable must be set indicating which build to use (i.e. STACK=cedar or STACK=cedar-14)"
